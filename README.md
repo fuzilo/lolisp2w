@@ -1,5 +1,6 @@
 # Lolisp2w
-![logo_LolisPW2](https://github.com/fuzilo/Lolispw2/assets/19290063/b7dc01cb-6703-41d2-97b6-b42728ebad54)
+![Logo_lolisp2w](https://github.com/fuzilo/lolisp2w/assets/19290063/06763cdb-c5da-4183-a548-72b0fc0ccd57)
+
 
 Bem-vindo ao repositório de skins do League of Legends LolisPw2! 
 Este projeto tem como objetivo fornecer uma base de dados abrangente e organizada de skins do jogo League of Legends, facilitando a busca e visualização de informações sobre cada skin.
