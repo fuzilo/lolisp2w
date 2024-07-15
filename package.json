@@ -4,7 +4,8 @@
   "description": "A comprehensive League of Legends Skin Repository",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout 10000",
+    "start:dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,15 @@
   "bugs": {
     "url": "https://github.com/fuzilo/lolisp2w/issues"
   },
-  "homepage": "https://github.com/fuzilo/lolisp2w#readme"
+  "homepage": "https://github.com/fuzilo/lolisp2w#readme",
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.6.0",
+    "nodemon": "^3.1.4",
+    "sinon": "^18.0.0",
+    "supertest": "^7.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
