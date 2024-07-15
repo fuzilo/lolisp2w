@@ -1,9 +1,11 @@
-const request = require('supertest');
-const express = require('express');
-const mongoose = require('mongoose');
-const chai = require('chai');
-const {expect} = chai.expect;
-require('dotenv').config();
+import request from 'supertest';
+import express from 'express';
+import mongoose from 'mongoose';
+import { expect } from 'chai';
+import dotenv from 'dotenv';
+import skinRoutes from '../../routes/skinRoutes.js';
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -14,7 +16,7 @@ before(async () => {
 });
 
 // Definindo rotas
-const skinRoutes = require('../../routes/skinRoutes');
+const skinRoutes = require('../../routes/skinRoutes.js');
 app.use('/skin', skinRoutes);
 
 // Teste para adicionar uma skin

@@ -4,7 +4,7 @@
   "description": "A comprehensive League of Legends Skin Repository",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'tests/**/*.test.js' --timeout 10000"
+    "test": "mocha 'tests/**/*.test.mjs' --timeout 10000"
   },
   "repository": {
     "type": "git",
