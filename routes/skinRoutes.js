@@ -48,6 +48,8 @@ const skinController = require('../controllers/skinController');
  *         rarity: legendary
  */
 
+router.get('/search', skinController.searchSkins);
+
 /**
  * @swagger
  * /skin:
@@ -174,5 +176,7 @@ router.put('/:id', skinController.updateSkin);
  *         description: Erro no servidor
  */
 router.delete('/:id', skinController.deleteSkin);
+
+
 
 module.exports = router;

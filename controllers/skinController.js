@@ -1,4 +1,5 @@
 const Skin = require('../models/skinModel');
+const { ObjectId } = require('mongoose').Types; // Importar ObjectId do Mongoose
 
 
 const skinController = {};
@@ -37,6 +38,36 @@ skinController.getSkinById = async (req, res) =>{
         
     }
 }
+// Busca Dinâmica
+skinController.searchSkins = async (req, res) =>{
+    const {field, value} = req.query;
+
+    if(!field || !value){
+        return res.status(400).json({message: 'Field and Value are required'})
+    }
+    try {
+                // Verifica se é um ID válido antes de realizar a consulta
+        if (field === '_id' && !ObjectId.isValid(value)) {
+        return res.status(400).json({ message: 'Invalid ObjectId' });
+        }
+
+        const query ={};
+        query[field] = { $regex: new RegExp(value, 'i')}
+        const skins = await Skin.find(query);
+        res.status(200).json(skins);
+
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+}
+// Explicação:
+// Rota e Query Parameters: A rota /skins/search aceita parâmetros de consulta (req.query) para field (campo a ser pesquisado) e value (valor a ser procurado).
+// Construção da Query: A função constrói dinamicamente o objeto de consulta query, utilizando expressões regulares para permitir buscas parciais e case-insensitive.
+// Consulta MongoDB: Skin.find(query) executa a consulta no banco de dados MongoDB com base nos parâmetros fornecidos.
+// Exemplo de Uso:
+// Para buscar skins com o campeão "Akali", faça uma requisição GET para /skins/search?field=champion&value=akali.
+// Para buscar skins com preço igual a 1350, faça uma requisição GET para /skins/search?field=price&value=1350.
+
 
 //Atualizar uma skin existente
 skinController.updateSkin = async(req, res) =>{

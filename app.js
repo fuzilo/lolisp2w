@@ -2,8 +2,8 @@ const express = require('express');
 const connectDB = require('./config/db');
 const skinRoutes = require('./routes/skinRoutes');
 require('dotenv').config();
-const { swaggerUi, swaggerDocs } = require('./swagger');
-const logger = require('./logger')
+const { swaggerUi, swaggerDocs } = require('./src/swagger');
+const logger = require('./src/logger')
 const morgan = require('morgan')
 
 const app = express();

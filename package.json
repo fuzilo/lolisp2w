@@ -4,8 +4,12 @@
   "description": "A comprehensive League of Legends Skin Repository",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'tests/**/*.test.mjs' --timeout 10000"
-  },
+    "start": "node app.js",
+    "test": "mocha 'tests/**/*.test.js' --timeout 10000",
+    "seed": "node seed.js",
+    "lint": "eslint .",
+    "start:dev": "nodemon app.js"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fuzilo/lolisp2w.git"
