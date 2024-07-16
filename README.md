@@ -27,3 +27,8 @@ Este repositório visa resolver este problema, proporcionando uma interface intu
 - Express.js: Framework web para Node.js, usado para criar a API da aplicação.
 - MongoDB: Banco de dados NoSQL utilizado para armazenar as informações das skins.
 - React: Biblioteca JavaScript para construção da interface do usuário.
+
+## Update 16/07/2024
+    Funcionalidades de CRUD prontas. Inserido o motor de busca por termos parciais e case-insentive, porém é necessário especificar cada campo, como nome, tema, campeão. Por conta da lógica, ele só funciona para Strings. Para valores, como preço não é compatível. O mesmo pode-se dizer da data de lançamento. Provavelmente, o ideal será criar uma nova lógica de busca, para retornar um "range" de valores de preço e datas.
+    # Update16/07/2024 - 2
+    Adicionado a lógica de busca por intervalos, para datas e valores
