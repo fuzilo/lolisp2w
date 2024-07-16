@@ -39,34 +39,49 @@ skinController.getSkinById = async (req, res) =>{
     }
 }
 // Busca Dinâmica
-skinController.searchSkins = async (req, res) =>{
-    const {field, value} = req.query;
+skinController.searchSkins = async (req, res) => {
+    const { field, value, min, max } = req.query;
 
-    if(!field || !value){
-        return res.status(400).json({message: 'Field and Value are required'})
+    if (!field) {
+        return res.status(400).json({ message: 'Field is required' });
     }
+
     try {
-                // Verifica se é um ID válido antes de realizar a consulta
-        if (field === '_id' && !ObjectId.isValid(value)) {
-        return res.status(400).json({ message: 'Invalid ObjectId' });
+        const query = {};
+
+        if (field === 'price' || field === 'releaseDate') {
+            if (min && max) {
+                query[field] = { $gte: min, $lte: max };
+            } else if (min) {
+                query[field] = { $gte: min };
+            } else if (max) {
+                query[field] = { $lte: max };
+            } else {
+                return res.status(400).json({ message: 'For price or releaseDate, min or max value is required' });
+            }
+        } else {
+            // Verifica se é um ID válido antes de realizar a consulta
+            if (field === '_id' && !ObjectId.isValid(value)) {
+                return res.status(400).json({ message: 'Invalid ObjectId' });
+            }
+            query[field] = { $regex: new RegExp(value, 'i') }; // 'i' para case-insensitive
         }
 
-        const query ={};
-        query[field] = { $regex: new RegExp(value, 'i')}
         const skins = await Skin.find(query);
         res.status(200).json(skins);
-
     } catch (error) {
-        res.status(500).json({message:error.message})
+        res.status(500).json({ message: error.message });
     }
-}
+};
+
 // Explicação:
 // Rota e Query Parameters: A rota /skins/search aceita parâmetros de consulta (req.query) para field (campo a ser pesquisado) e value (valor a ser procurado).
 // Construção da Query: A função constrói dinamicamente o objeto de consulta query, utilizando expressões regulares para permitir buscas parciais e case-insensitive.
 // Consulta MongoDB: Skin.find(query) executa a consulta no banco de dados MongoDB com base nos parâmetros fornecidos.
 // Exemplo de Uso:
-// Para buscar skins com o campeão "Akali", faça uma requisição GET para /skins/search?field=champion&value=akali.
-// Para buscar skins com preço igual a 1350, faça uma requisição GET para /skins/search?field=price&value=1350.
+// Buscar por parte do nome: /skins/search?field=name&value=akali
+// Buscar por intervalo de preço: /skins/search?field=price&min=1000&max=2000
+// Buscar por intervalo de datas: /skins/search?field=releaseDate&min=2019-01-01&max=2020-01-01
 
 
 //Atualizar uma skin existente
@@ -97,5 +112,3 @@ skinController.deleteSkin = async(req, res) =>{
 }
 
 module.exports = skinController;
-
-// Outros métodos (atualizar, deletar, etc.) podem ser adicionados aqui

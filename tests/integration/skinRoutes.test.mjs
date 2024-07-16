@@ -13,8 +13,7 @@ app.use(express.json());
 // Conectando ao banco de dados de teste
 before(async () => {
     await mongoose.connect(process.env.MONGO_URI_TEST, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
+
     });
 });
 

@@ -48,7 +48,54 @@ const skinController = require('../controllers/skinController');
  *         rarity: legendary
  */
 
+/**
+ * @swagger
+ * /skins/search:
+ *   get:
+ *     summary: Busca skins com base em critérios dinâmicos
+ *     description: Retorna uma lista de skins que correspondem aos critérios de busca fornecidos
+ *     parameters:
+ *       - in: query
+ *         name: field
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: O campo pelo qual buscar
+ *       - in: query
+ *         name: value
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: O valor a ser buscado (para campos de string)
+ *       - in: query
+ *         name: min
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: O valor mínimo para busca (para campos numéricos ou data)
+ *       - in: query
+ *         name: max
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: O valor máximo para busca (para campos numéricos ou data)
+ *     responses:
+ *       200:
+ *         description: Lista de skins que correspondem aos critérios de busca
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Skin'
+ *       400:
+ *         description: Parâmetros de busca inválidos
+ *       500:
+ *         description: Erro interno do servidor
+ */
 router.get('/search', skinController.searchSkins);
+// rotas /search devem ser escritas antes de rotas /:id, que esperam um parâmetro de ID
+
 
 /**
  * @swagger
