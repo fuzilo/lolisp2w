@@ -1,14 +1,21 @@
 # Use uma imagem base do Node.js
-FROM node:14
+FROM node:14-alpine
 
 # Configura o diretório de trabalho
+<<<<<<< Updated upstream:app/dockerfile
 WORKDIR /lolisp2w/app
+=======
+WORKDIR /lolisp2w
+>>>>>>> Stashed changes:dockerfile
 
 # Copia o package.json e o package-lock.json
 COPY package*.json ./
 
 # Instala as dependências
 RUN npm install
+
+# Variáreis de Ambiente
+
 
 # Copia o restante dos arquivos da aplicação
 COPY . .
