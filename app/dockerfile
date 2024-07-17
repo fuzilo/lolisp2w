@@ -2,7 +2,7 @@
 FROM node:14
 
 # Configura o diretório de trabalho
-WORKDIR /usr/src/app
+WORKDIR /lolisp2w/app
 
 # Copia o package.json e o package-lock.json
 COPY package*.json ./
