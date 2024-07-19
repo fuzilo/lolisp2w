@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const skinController = require('../../app/controllers/skinController');
+const skinController = require('../controllers/skinController');
 
 /**
  * @swagger
