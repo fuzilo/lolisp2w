@@ -26,6 +26,7 @@ app.use(express.json());
 
 // Rotas
 app.use('/skins', require('./routes/skinRoutes'));
+// app.use('/api-docs', require('./routes/skinRoutes'));
 
 // Rota para a documentação do Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));

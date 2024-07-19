@@ -43,10 +43,11 @@ const skinController = require('../../app/controllers/skinController');
  *         name: Akali True Damage
  *         champion: Akali
  *         theme: True Damage
- *         releaseDate: 2019-11-10
+ *         releaseDate: 2019-11-10T00:00:00.000Z
  *         price: 1350
  *         rarity: legendary
  */
+
 
 /**
  * @swagger
@@ -60,27 +61,25 @@ const skinController = require('../../app/controllers/skinController');
  *         schema:
  *           type: string
  *         required: true
- *         description: O campo pelo qual você quer buscar.
+ *         description: O campo pelo qual você quer buscar (ex: name, champion, price, releaseDate).
  *       - in: query
  *         name: value
  *         schema:
  *           type: string
  *         required: false
- *         description: O valor a ser buscado para campos de texto. Utilize para busca parcial.
+ *         description: O valor a ser buscado (para campos de texto). Utilize para busca parcial (ex: "akali" encontrará "Akali True Damage").
  *       - in: query
  *         name: min
  *         schema:
- *           type: string
- *           format: date
+ *           type: number
  *         required: false
- *         description: O valor mínimo para busca de intervalo para campos numéricos ou datas.
+ *         description: O valor mínimo para busca de intervalo (para campos numéricos ou datas).
  *       - in: query
  *         name: max
  *         schema:
- *           type: string
- *           format: date
+ *           type: number
  *         required: false
- *         description: O valor máximo para busca de intervalo para campos numéricos ou datas.
+ *         description: O valor máximo para busca de intervalo (para campos numéricos ou datas).
  *     responses:
  *       200:
  *         description: Uma lista de skins que correspondem aos critérios de busca.
@@ -91,15 +90,18 @@ const skinController = require('../../app/controllers/skinController');
  *               items:
  *                 $ref: '#/components/schemas/Skin'
  *       400:
- *         description: Requisição inválida.
+ *         description: Requisição inválida (campo obrigatório ausente ou ObjectId inválido).
  *       500:
  *         description: Erro interno do servidor.
  */
 router.get('/search', skinController.searchSkins);
 
+// rotas /search devem ser escritas antes de rotas /:id, que esperam um parâmetro de ID
+
+
 /**
  * @swagger
- * /skins:
+ * /skin:
  *   get:
  *     summary: Retorna todas as skins
  *     tags: [Skins]
@@ -117,7 +119,7 @@ router.get('/', skinController.getAllSkins);
 
 /**
  * @swagger
- * /skins/{id}:
+ * /skin/{id}:
  *   get:
  *     summary: Retorna uma skin pelo ID
  *     tags: [Skins]
@@ -142,7 +144,7 @@ router.get('/:id', skinController.getSkinById);
 
 /**
  * @swagger
- * /skins:
+ * /skin:
  *   post:
  *     summary: Adiciona uma nova skin
  *     tags: [Skins]
@@ -166,7 +168,7 @@ router.post('/', skinController.addSkin);
 
 /**
  * @swagger
- * /skins/{id}:
+ * /skin/{id}:
  *   put:
  *     summary: Atualiza uma skin existente
  *     tags: [Skins]
@@ -199,7 +201,7 @@ router.put('/:id', skinController.updateSkin);
 
 /**
  * @swagger
- * /skins/{id}:
+ * /skin/{id}:
  *   delete:
  *     summary: Deleta uma skin existente
  *     tags: [Skins]
@@ -223,5 +225,7 @@ router.put('/:id', skinController.updateSkin);
  *         description: Erro no servidor
  */
 router.delete('/:id', skinController.deleteSkin);
+
+
 
 module.exports = router;
