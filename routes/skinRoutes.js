@@ -99,7 +99,7 @@ router.get('/search', skinController.searchSkins);
 
 /**
  * @swagger
- * /skin:
+ * /skins:
  *   get:
  *     summary: Retorna todas as skins
  *     tags: [Skins]
