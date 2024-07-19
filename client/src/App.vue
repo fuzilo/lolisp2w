@@ -14,10 +14,10 @@
 </script>
 
 <template>
-  <div id="home-bg" class="w-screen h-screen bg-blue-400">
-    <nav class="py-4 flex flex-row justify-center items-center">
+  <div id="home-bg" class="min-w-screen min-h-screen bg-gradient-to-b to-cyan-900 via-20% from-indigo-600">
+    <nav class="py-4 grid place-content-center">
       <div
-        class="mx-10 py-2 px-4 w-3/5 flex flex-row items-center justify-between bg-blend-normal bg-white-300 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 bg-white/20">
+        class="mx-10 py-2 px-4 min-w-72 flex flex-row items-center justify-between bg-blend-normal bg-white-300 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 bg-white/20">
         <HomeButton />
         <SearchBar />
       </div>
