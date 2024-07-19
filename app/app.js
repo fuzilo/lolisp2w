@@ -3,13 +3,19 @@ const connectDB = require('./config/db');
 const skinRoutes = require('./routes/skinRoutes');
 require('dotenv').config();
 const { swaggerUi, swaggerDocs } = require('./src/swagger');
+const cors= require('cors');
 // const logger = require('./src/logger')
 // const morgan = require('morgan')
 
 const app = express();
 
+//habilitar CORS para todas as origens
+app.use(cors());
+
 // Conectar ao MongoDB
 connectDB();
+
+
 
 // Middleware
 app.use(express.json());
