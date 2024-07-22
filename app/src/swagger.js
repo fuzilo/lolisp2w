@@ -15,7 +15,7 @@ const swaggerOptions = {
                 description: 'Servidor local',
             },
             {
-                url: 'http://ec2-3-138-182-151.us-east-2.compute.amazonaws.com',
+                url: 'http://ec2-3-128-190-149.us-east-2.compute.amazonaws.com/skins',
                 description: 'Servidor de produção',
             },
         ],
