@@ -6,7 +6,6 @@ const { swaggerUi, swaggerDocs } = require('./src/swagger');
 const cors= require('cors');
 // const logger = require('./src/logger')
 // const morgan = require('morgan')
-
 const app = express();
 
 //habilitar CORS para todas as origens
@@ -25,8 +24,8 @@ app.use(express.json());
 
 
 // Rotas
-app.use('/skins', require('./routes/skinRoutes'));
-// app.use('/api-docs', require('./routes/skinRoutes'));
+app.use('/skins', skinRoutes);
+
 
 // Rota para a documentação do Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));

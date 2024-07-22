@@ -11,7 +11,7 @@
 
     <script>
         document.getElementById('testButton').addEventListener('click', () => {
-            fetch('http://localhost:8080/skins/search')
+            fetch('http://localhost:8080/skins/search?field=champion&value=akali')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('result').innerText = JSON.stringify(data);
