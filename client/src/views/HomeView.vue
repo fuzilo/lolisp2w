@@ -1,9 +1,12 @@
 <script setup>
-  import HelloWorld from '@/components/HelloWorld.vue';
+import HeroCard from '@/components/HeroCard.vue';
+import InfoCard from '@/components/InfoCard.vue';
+
 </script>
 
 <template>
   <main>
-    <HelloWorld msg="You did it!" />
+    <InfoCard />
+    <HeroCard />
   </main>
 </template>
