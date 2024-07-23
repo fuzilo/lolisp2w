@@ -1,39 +1,53 @@
 <template>
-	<div class="flex flex-col">
-		<input list="champions" class="px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500" id="champion-filter" v-model="selectedChampion" @input="filterSkins" placeholder="Search">
-		<datalist id="champions">
-		  <option value="">All Champions</option>
-		  <option v-for="champion in champions" :key="champion.id" :value="champion">{{ champion }}</option>
-		</datalist>
-	</div>
+ <div class="flex flex-col min-w-[40vw]">
+  <input
+   list="skins"
+   class="px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+   placeholder="Search"
+  />
+  <datalist id="skins">
+   <option
+    class="cursor-pointer"
+    v-for="skin in skins"
+    :key="skin.id"
+    :value="skin.name"
+    @click="() => $router.push(`http://localhost:8080/skin/${skin.id}`)"
+   >
+    {{ skin.name }}
+   </option>
+  </datalist>
+ </div>
 </template>
 
 <script>
-	import axios from 'axios';
-	import { ref } from 'vue';
+import axios from 'axios'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
-	export default {
-		setup() {
-			const champions = ref('');
-			const filterSkins = () => {
-				axios.get(`http://localhost:8080/skins/search?field=champion&value=${champions.value}`)
-					.then((response) => {
-						console.log(response.data);
-					})
-					.catch((error) => {
-						console.error(error);
-					});
-			};
+export default {
+ setup() {
+  const store = useStore()
 
-			return {
-				filterSkins,
-				champions,
-			};
+  const getSkins = async () => {
+   try {
+    const response = await axios.get('http://localhost:8080/skin')
+    store.commit('setSkins', response.data)
+   } catch (error) {
+    console.error(error)
+   }
+  }
 
-		}
-	};
+  return {
+   skins: computed(() => store.state.skins),
+   getSkins
+  }
+ },
+ created() {
+  this.getSkins()
+ }
+}
 </script>
 
 <style scoped>
-	/* Add any custom styles here */
+/* Add any custom styles here */
 </style>

@@ -1,11 +1,11 @@
 <template>
     <div>
-        <h1>{{ title }}</h1>
-        <p>{{ description }}</p>
+        <!-- <h1>{{ title }}</h1>
+        <p>{{ description }}</p> -->
     </div>
 </template>
 
-<script>
+<!-- <script>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
@@ -32,7 +32,7 @@ export default {
     },
 };
 </script>
-
+ -->
 <style scoped>
 /* Add your component styles here */
 </style>
