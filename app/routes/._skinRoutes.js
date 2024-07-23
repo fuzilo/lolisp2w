@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const skinController = require('../controllers/skinController');
+const skinController = require('../../app/controllers/skinController');
 
 /**
  * @swagger
@@ -48,40 +48,41 @@ const skinController = require('../controllers/skinController');
  *         rarity: legendary
  */
 
+
 /**
  * @swagger
  * /skins/search:
  *   get:
- *     summary: Busca skins com base em critérios dinâmicos
- *     description: Retorna uma lista de skins que correspondem aos critérios de busca fornecidos
+ *     summary: Busca skins baseado em diferentes critérios
+ *     description: Realiza uma busca por skins com base em vários critérios, incluindo nome, campeão, preço e data de lançamento.
  *     parameters:
  *       - in: query
  *         name: field
  *         schema:
  *           type: string
  *         required: true
- *         description: O campo pelo qual buscar
+ *         description: O campo pelo qual você quer buscar (ex: name, champion, price, releaseDate).
  *       - in: query
  *         name: value
  *         schema:
  *           type: string
  *         required: false
- *         description: O valor a ser buscado (para campos de string)
+ *         description: O valor a ser buscado (para campos de texto). Utilize para busca parcial (ex: "akali" encontrará "Akali True Damage").
  *       - in: query
  *         name: min
  *         schema:
- *           type: string
+ *           type: number
  *         required: false
- *         description: O valor mínimo para busca (para campos numéricos ou data)
+ *         description: O valor mínimo para busca de intervalo (para campos numéricos ou datas).
  *       - in: query
  *         name: max
  *         schema:
- *           type: string
+ *           type: number
  *         required: false
- *         description: O valor máximo para busca (para campos numéricos ou data)
+ *         description: O valor máximo para busca de intervalo (para campos numéricos ou datas).
  *     responses:
  *       200:
- *         description: Lista de skins que correspondem aos critérios de busca
+ *         description: Uma lista de skins que correspondem aos critérios de busca.
  *         content:
  *           application/json:
  *             schema:
@@ -89,17 +90,18 @@ const skinController = require('../controllers/skinController');
  *               items:
  *                 $ref: '#/components/schemas/Skin'
  *       400:
- *         description: Parâmetros de busca inválidos
+ *         description: Requisição inválida (campo obrigatório ausente ou ObjectId inválido).
  *       500:
- *         description: Erro interno do servidor
+ *         description: Erro interno do servidor.
  */
 router.get('/search', skinController.searchSkins);
+
 // rotas /search devem ser escritas antes de rotas /:id, que esperam um parâmetro de ID
 
 
 /**
  * @swagger
- * /skins:
+ * /skin:
  *   get:
  *     summary: Retorna todas as skins
  *     tags: [Skins]
