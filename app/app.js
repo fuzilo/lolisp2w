@@ -10,6 +10,8 @@ const app = express();
 
 //habilitar CORS para todas as origens
 app.use(cors());
+// Middleware para lidar com solicitações OPTIONS
+app.options('*', cors());
 
 // Conectar ao MongoDB
 connectDB();
@@ -26,15 +28,15 @@ app.use(express.json());
 // Rotas
 app.use('/skins', skinRoutes);
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
-
-
 // Rota para a documentação do Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api-docs',(req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, api_key, Authorization');
+    next();
+},swaggerUi.serve, swaggerUi.setup(swaggerDocs) );
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

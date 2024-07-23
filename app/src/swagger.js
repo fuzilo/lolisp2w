@@ -11,11 +11,11 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:8080',
+                url: process.env.LOCAL_SERVER_URL || 'http://localhost:5000', // URL do servidor local
                 description: 'Servidor local',
             },
             {
-                url: 'http://ec2-3-128-190-149.us-east-2.compute.amazonaws.com/skins',
+                url: process.env.PRODUCTION_SERVER_URL, // URL do servidor de produção
                 description: 'Servidor de produção',
             },
         ],
