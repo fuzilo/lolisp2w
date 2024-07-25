@@ -62,7 +62,7 @@ const swaggerOptions = {
                         theme: 'True Damage',
                         releaseDate: '2019-11-10T00:00:00.000Z',
                         price: 1350,
-                        rarity: 'legendary',
+                        rarity: 'legendary',    
                     },
                 },
             },
