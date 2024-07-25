@@ -74,16 +74,6 @@ skinController.searchSkins = async (req, res) => {
     }
 };
 
-// Explicação:
-// Rota e Query Parameters: A rota /skins/search aceita parâmetros de consulta (req.query) para field (campo a ser pesquisado) e value (valor a ser procurado).
-// Construção da Query: A função constrói dinamicamente o objeto de consulta query, utilizando expressões regulares para permitir buscas parciais e case-insensitive.
-// Consulta MongoDB: Skin.find(query) executa a consulta no banco de dados MongoDB com base nos parâmetros fornecidos.
-// Exemplo de Uso:
-// Buscar por parte do nome: /skins/search?field=name&value=akali
-// Buscar por intervalo de preço: /skins/search?field=price&min=1000&max=2000
-// Buscar por intervalo de datas: /skins/search?field=releaseDate&min=2019-01-01&max=2020-01-01
-
-
 //Atualizar uma skin existente
 skinController.updateSkin = async(req, res) =>{
     try {

@@ -1,14 +1,14 @@
 # Use uma imagem base do Node.js
-FROM node:14
+FROM node:20-alpine  
 
 # Configura o diretório de trabalho
-WORKDIR /usr/src/app
+WORKDIR /lolisp2w/app
 
 # Copia o package.json e o package-lock.json
 COPY package*.json ./
 
 # Instala as dependências
-RUN npm install
+RUN npm install --production
 
 # Copia o restante dos arquivos da aplicação
 COPY . .
