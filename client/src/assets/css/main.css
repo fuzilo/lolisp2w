@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .glass-card {
+    @apply rounded-3xl backdrop-blur-md bg-white/30;
+  }
+}

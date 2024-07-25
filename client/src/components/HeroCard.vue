@@ -1,25 +1,30 @@
 <template>
-    <div>
-        <h1>{{ title }}</h1>
-        <p>{{ description }}</p>
-    </div>
+ <div
+  class="glass-card flex-grow"
+ >
+  <h1>{{ title }}</h1>
+  <p>{{ description }}</p>
+ </div>
 </template>
 
 <script>
-import { ref } from 'vue';
 
 export default {
-    name: 'HeroCard',
-    setup() {
-        const title = ref('My Hero');
-        const description = ref('This is a hero card component.');
-
-        return {
-            title,
-            description
-        };
-    }
-};
+ name: 'HeroCard',
+ props: {
+  title: {
+   type: String,
+   required: true
+  },
+  description: {
+   type: String,
+   required: true
+  }
+ },
+ setup() {
+  return {}
+ }
+}
 </script>
 
 <style scoped>
