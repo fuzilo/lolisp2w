@@ -26,16 +26,6 @@ skinController.getAllSkins = async (req, res) => {
     }
 };
 
-
-// skinController.getAllSkins = async (req, res) => {
-//     try {
-//         const skins = await Skin.find();
-//         res.status(200).json(skins);
-//     } catch (error) {
-//         return res.status(500).send(error.message);
-//     }
-// };
-
 // Adicionar uma nova skin
 skinController.addSkin = async (req, res) => {
     const skin = new Skin(req.body);
@@ -105,41 +95,6 @@ skinController.searchSkins = async (req, res) => {
     }
 };
 
-
-// skinController.searchSkins = async (req, res) => {
-//     const { field, value, min, max } = req.query;
-
-//     if (!field) {
-//         return res.status(400).json({ message: 'Field is required' });
-//     }
-
-//     try {
-//         const query = {};
-
-//         if (field === 'price' || field === 'releaseDate') {
-//             if (min && max) {
-//                 query[field] = { $gte: min, $lte: max };
-//             } else if (min) {
-//                 query[field] = { $gte: min };
-//             } else if (max) {
-//                 query[field] = { $lte: max };
-//             } else {
-//                 return res.status(400).json({ message: 'For price or releaseDate, min or max value is required' });
-//             }
-//         } else {
-//             // Verifica se é um ID válido antes de realizar a consulta
-//             if (field === '_id' && !ObjectId.isValid(value)) {
-//                 return res.status(400).json({ message: 'Invalid ObjectId' });
-//             }
-//             query[field] = { $regex: new RegExp(value, 'i') }; // 'i' para case-insensitive
-//         }
-
-//         const skins = await Skin.find(query);
-//         res.status(200).json(skins);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// };
 
 //Atualizar uma skin existente
 skinController.updateSkin = async(req, res) =>{

@@ -5,8 +5,6 @@ require('dotenv').config();
 const { swaggerUi, swaggerDocs } = require('./src/swagger');
 const cors= require('cors');
 const userRoutes = require('./routes/userRoutes');
-//Usar AuthMiddleware em implementações futuras
-// const authMiddleware = require('./middleware/authMiddleware');
 // const logger = require('./src/logger')
 // const morgan = require('morgan')
 const app = express();
@@ -24,10 +22,6 @@ app.use(express.json());
 
 // Configurar Morgan para usar o logger do Winston
 // app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
-
-
-// Rotas Protegidas por autenticação
-// app.use('/protected', authMiddleware, protectedRoutes)
 
 // Rotas
 app.use('/api/users', userRoutes);
