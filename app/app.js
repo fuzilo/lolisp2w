@@ -4,6 +4,9 @@ const skinRoutes = require('./routes/skinRoutes');
 require('dotenv').config();
 const { swaggerUi, swaggerDocs } = require('./src/swagger');
 const cors= require('cors');
+const userRoutes = require('./routes/userRoutes');
+//Usar AuthMiddleware em implementações futuras
+// const authMiddleware = require('./middleware/authMiddleware');
 // const logger = require('./src/logger')
 // const morgan = require('morgan')
 const app = express();
@@ -16,8 +19,6 @@ app.options('*', cors());
 // Conectar ao MongoDB
 connectDB();
 
-
-
 // Middleware
 app.use(express.json());
 
@@ -25,7 +26,12 @@ app.use(express.json());
 // app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
 
 
+// Rotas Protegidas por autenticação
+// app.use('/protected', authMiddleware, protectedRoutes)
+
 // Rotas
+app.use('/api/users', userRoutes);
+
 app.use('/skins', skinRoutes);
 
 // Rota para a documentação do Swagger

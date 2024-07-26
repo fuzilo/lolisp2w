@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const skinController = require('../controllers/skinController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -142,7 +143,7 @@ router.get('/:id', skinController.getSkinById);
 
 /**
  * @swagger
- * /skins:
+ * /skins/add:
  *   post:
  *     summary: Adiciona uma nova skin
  *     tags: [Skins]
@@ -162,11 +163,11 @@ router.get('/:id', skinController.getSkinById);
  *       500:
  *         description: Erro no servidor
  */
-router.post('/', skinController.addSkin);
+router.post('/add',authMiddleware, skinController.addSkin);
 
 /**
  * @swagger
- * /skins/{id}:
+ * /skins/update/{id}:
  *   put:
  *     summary: Atualiza uma skin existente
  *     tags: [Skins]
@@ -195,11 +196,11 @@ router.post('/', skinController.addSkin);
  *       500:
  *         description: Erro no servidor
  */
-router.put('/:id', skinController.updateSkin);
+router.put('/update/:id',authMiddleware, skinController.updateSkin);
 
 /**
  * @swagger
- * /skins/{id}:
+ * /skins/delete/{id}:
  *   delete:
  *     summary: Deleta uma skin existente
  *     tags: [Skins]
@@ -222,6 +223,6 @@ router.put('/:id', skinController.updateSkin);
  *       500:
  *         description: Erro no servidor
  */
-router.delete('/:id', skinController.deleteSkin);
+router.delete('/delete/:id',authMiddleware, skinController.deleteSkin);
 
 module.exports = router;
